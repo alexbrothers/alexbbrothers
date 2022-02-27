@@ -14,24 +14,26 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <HeaderSection 
-      headline={props.introContent.headline}
-      subHeadline={props.introContent.subHeadline}
-      introText={props.introContent.introText}
-    />
+    <>
+      <HeaderSection 
+        headline={props.introContent.headline}
+        subHeadline={props.introContent.subHeadline}
+        introText={props.introContent.introText}
+      />
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async context => {
   const client = getContentfulClient();
   try {
-    const response = await client.getEntries({
+    const introResponse = await client.getEntries({
       content_type: "intro",
       limit: 1,
     });
     return {
       props: {
-        introContent: response.items[0].fields,
+        introContent: introResponse.items[0].fields,
       }
     }
   } catch(e: any) {
