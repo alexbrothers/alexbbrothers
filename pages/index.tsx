@@ -1,57 +1,89 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
-import Link from 'next/link'
-import Date from '../components/date'
+import { Box, Container, Typography } from "@mui/material";
 import { GetStaticProps } from 'next'
+import Avatar from "avataaars";
+import { getContentfulClient } from "../lib/contentful";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 
-export default function Home({
-  allPostsData
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-}) {
+interface IntroContent {
+  headline: string,
+  subHeadline: string,
+  introText: any,
+}
+
+interface HomeProps {
+  introContent: IntroContent,
+}
+
+export default function Home(props: HomeProps) {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+    <Container>
+      <Box sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        minHeight: "90vh",
+      }}>
+        <Box sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          rowGap: "25px",
+        }}>
+          <Typography variant="h1" sx={{fontWeight: "400"}}>{props.introContent.headline}</Typography>
+          <Typography variant="h3">{props.introContent.subHeadline}</Typography>
+          {documentToReactComponents(
+            props.introContent.introText,
+            {
+              renderNode: {
+                [BLOCKS.PARAGRAPH]: (_node, children) => <Typography variant="h6">{children}</Typography>
+              }
+            }
+          )}
+        </Box>
+        <Box sx={{
+          display: {
+            xs: "none",
+            md: "flex",
+          }
+        }}>
+          <Avatar
+            avatarStyle='Circle'
+            topType='ShortHairShortFlat'
+            accessoriesType='Prescription02'
+            hairColor='BrownDark'
+            facialHairType='BeardLight'
+            facialHairColor='BrownDark'
+            clotheType='Hoodie'
+            clotheColor='Blue03'
+            eyeType='Happy'
+            eyebrowType='Default'
+            mouthType='Smile'
+            skinColor='Light'
+            style={{width: '400px', height: '400px'}}
+          />
+        </Box>
+      </Box>
+    </Container>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
+export const getStaticProps: GetStaticProps = async context => {
+  console.log("HERE!!!");
+  const client = getContentfulClient();
+  try {
+    const response = await client.getEntries({
+      content_type: "intro",
+      limit: 1,
+    });
+    console.log(`response: ${JSON.stringify(response, null, 2)}`);
+    return {
+      props: {
+        introContent: response.items[0].fields,
+      }
     }
+  } catch(e: any) {
+    console.log(`error retrieving intro content from contentful: ${e.message}`);
+    throw e;
   }
 }

@@ -6,6 +6,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.11.1",
+    "@contentful/rich-text-types": "^15.11.1",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/roboto": "^4.5.3",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.3",
+    "avataaars": "^2.0.0",
+    "contentful": "^9.1.12",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "next": "latest",
