@@ -16,13 +16,20 @@ export default function HeaderSection(props: IntroContent) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        minHeight: "100vh",
+        minHeight: "95vh",
       }}>
         <Box sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
           rowGap: "25px",
+          "a": {
+              color: "#0070f3",
+              textDecoration: "none",
+          },
+          "a:hover": {
+              textDecoration: "underline",
+          }
         }}>
           <Typography variant="h1" sx={{fontWeight: "400"}}>{props.headline}</Typography>
           <Typography variant="h3">{props.subHeadline}</Typography>
