@@ -16,7 +16,7 @@ export default function HeaderSection(props: IntroContent) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        minHeight: "95vh",
+        minHeight: "90vh",
       }}>
         <Box sx={{
           display: "flex",

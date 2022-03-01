@@ -47,6 +47,7 @@ export default function BlogCard(props: BlogCardProps) {
                         WebkitLineClamp: 4,
                         WebkitBoxOrient: "vertical",
                         marginBottom: "8px",
+                        overflow: "hidden",
                     }}>
                         {documentToReactComponents(
                             props.content,
