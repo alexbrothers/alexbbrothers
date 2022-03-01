@@ -59,7 +59,6 @@ export const getStaticProps: GetStaticProps = async context => {
       order: 'sys.createdAt',
     });
     const recentBlogs = recentBlogsResponse.items as any;
-    console.log("RECENT BLOGS ID: ", recentBlogs[0].sys.id)
     return {
       props: {
         introContent: introResponse.items[0].fields,

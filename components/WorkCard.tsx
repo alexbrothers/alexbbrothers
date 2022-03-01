@@ -68,7 +68,9 @@ export default function WorkCard(props: WorkCardProps) {
                         display: "flex",
                         justifyContent: "flex-start",
                         alignItems: "center",
-                        columnGap: "20px"
+                        columnGap: "10px",
+                        rowGap: "10px",
+                        flexWrap: "wrap",
                     }}>
                         {props.technologies.map(tech => (
                             <Chip label={tech} />

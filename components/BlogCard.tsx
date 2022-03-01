@@ -61,7 +61,9 @@ export default function BlogCard(props: BlogCardProps) {
                         display: "flex",
                         justifyContent: "flex-start",
                         alignItems: "center",
-                        columnGap: "20px",
+                        columnGap: "10px",
+                        rowGap: "10px",
+                        flexWrap: "wrap",
                         paddingTop: "8px",
                     }}>
                         {props.tags.map(tech => (

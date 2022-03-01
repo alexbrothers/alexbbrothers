@@ -71,7 +71,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
             fallback: false,
         }
     } catch(e: any) {
-        console.log(`error retrieving blogs from contentful: ${e.message}`);
+        console.log(`error retrieving blogs ids from contentful: ${e.message}`);
         throw e;
     }
 }
