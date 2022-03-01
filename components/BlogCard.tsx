@@ -48,6 +48,7 @@ export default function BlogCard(props: BlogCardProps) {
                         WebkitBoxOrient: "vertical",
                         marginBottom: "8px",
                         overflow: "hidden",
+                        maxHeight: "125px",
                     }}>
                         {documentToReactComponents(
                             props.content,
