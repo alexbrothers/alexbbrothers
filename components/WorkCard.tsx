@@ -16,7 +16,10 @@ export default function WorkCard(props: WorkCardProps) {
     return (
         <Paper elevation={6} sx={{
             width: "100%",
-            padding: "20px",
+            padding: {
+                xs: "10px",
+                md: "20px",
+            },
             marginBotton: "20px"
         }}>
             <Box sx={{
@@ -24,15 +27,24 @@ export default function WorkCard(props: WorkCardProps) {
                 columnGap: "15px"
             }}>
                 <Box sx={{
-                    padding: "20px"
+                    padding: {
+                        xs: "10px",
+                        md: "20px"
+                    }
                 }}>
                     <Avatar 
                         alt={props.company} 
                         src={props.companyLogoLink} 
                         variant="square"
                         sx={{
-                            height: 75,
-                            width: 75,
+                            height: {
+                                xs: 50,
+                                md: 75,
+                            },
+                            width: {
+                                xs: 50,
+                                md: 75,
+                            }
                         }}
                     />
                 </Box>
@@ -42,6 +54,7 @@ export default function WorkCard(props: WorkCardProps) {
                     justifyContent: "center"
                 }}>
                     <Typography paragraph variant="h6" sx={{
+                        marginTop: "8px",
                         marginBottom: "8px",
                     }}>
                         {props.title}
