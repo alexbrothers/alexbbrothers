@@ -19,13 +19,14 @@ interface WorkExperienceSectionProps {
 }
 
 export default function WorkExperienceSection(props: WorkExperienceSectionProps) {
-    console.log("PROPS: ", JSON.stringify(props, null, 2))
   return (
     <SectionContainer>
         <SectionHeader name={props.header} />
         <Box sx={{
             display: "flex",
-            width: "100%"
+            width: "100%",
+            flexDirection: "column",
+            rowGap: "40px",
         }}>
             {
                 props.workExperience.map(item => (

@@ -1,4 +1,4 @@
-import { Box, Card, Paper, Typography, Avatar, Grid } from "@mui/material";
+import { Box, Card, Paper, Typography, Avatar, Grid, Chip } from "@mui/material";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 
@@ -14,9 +14,10 @@ interface WorkCardProps {
 
 export default function WorkCard(props: WorkCardProps) {
     return (
-        <Paper elevation={24} sx={{
+        <Paper elevation={6} sx={{
             width: "100%",
-            padding: "20px"
+            padding: "20px",
+            marginBotton: "20px"
         }}>
             <Box sx={{
                 display: "flex",
@@ -40,11 +41,18 @@ export default function WorkCard(props: WorkCardProps) {
                     flexDirection: "column",
                     justifyContent: "center"
                 }}>
-                    <Typography paragraph>
+                    <Typography paragraph variant="h6" sx={{
+                        marginBottom: "8px",
+                    }}>
                         {props.title}
                     </Typography>
-                    <Typography paragraph>
+                    <Typography paragraph sx={{
+                        marginBottom: "8px",
+                    }}>
                         {props.company}
+                    </Typography>
+                    <Typography paragraph fontWeight={300}>
+                        {props.startDate} - {props.endDate}
                     </Typography>
                     <Box>
                         {documentToReactComponents(
@@ -55,6 +63,16 @@ export default function WorkCard(props: WorkCardProps) {
                                 }
                             }
                         )}
+                    </Box>
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        columnGap: "20px"
+                    }}>
+                        {props.technologies.map(tech => (
+                            <Chip label={tech} />
+                        ))}
                     </Box>
                 </Box>
             </Box>
