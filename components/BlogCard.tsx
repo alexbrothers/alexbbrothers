@@ -2,6 +2,7 @@ import { Box, Card, Paper, Typography, Avatar, Grid, Chip } from "@mui/material"
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import Link from "next/link";
+import Clamp from 'react-multiline-clamp';
 
 interface Author {
     firstName: string,
@@ -42,23 +43,20 @@ export default function BlogCard(props: BlogCardProps) {
                     <Typography paragraph fontWeight={300}>
                         {new Date(props.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Typography component="div" noWrap gutterBottom sx={{
-                        display: "-webkit-box",
-                        WebkitLineClamp: 4,
-                        WebkitBoxOrient: "vertical",
-                        marginBottom: "8px",
-                        overflow: "hidden",
-                        maxHeight: "125px",
-                    }}>
+                    <Clamp
+                        lines={4}
+                    >
                         {documentToReactComponents(
                             props.content,
                             {
                                 renderNode: {
-                                    [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph sx={{whiteSpace: "normal"}}>{children}</Typography>
+                                    [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph sx={{
+                                        whiteSpace: "normal",
+                                    }}>{children}</Typography>
                                 }
                             }
                         )}
-                    </Typography>
+                    </Clamp>
                     <Box sx={{
                         display: "flex",
                         justifyContent: "flex-start",
