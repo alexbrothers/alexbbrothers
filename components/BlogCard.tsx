@@ -2,7 +2,6 @@ import { Box, Card, Paper, Typography, Avatar, Grid, Chip } from "@mui/material"
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import Link from "next/link";
-import Clamp from 'react-multiline-clamp';
 
 interface Author {
     firstName: string,
