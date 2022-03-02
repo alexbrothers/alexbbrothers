@@ -43,20 +43,26 @@ export default function BlogCard(props: BlogCardProps) {
                     <Typography paragraph fontWeight={300}>
                         {new Date(props.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Clamp
-                        lines={4}
-                    >
-                        {documentToReactComponents(
-                            props.content,
-                            {
-                                renderNode: {
-                                    [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph sx={{
-                                        whiteSpace: "normal",
-                                    }}>{children}</Typography>
+                    <Typography component="div" noWrap gutterBottom sx={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 4,
+                        WebkitBoxOrient: "vertical",
+                        marginBottom: "8px",
+                        overflow: "hidden",
+                    }}>
+                        <Box>
+                            {documentToReactComponents(
+                                props.content,
+                                {
+                                    renderNode: {
+                                        [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph sx={{
+                                            whiteSpace: "normal",
+                                        }}>{children}</Typography>
+                                    }
                                 }
-                            }
-                        )}
-                    </Clamp>
+                            )}
+                        </Box>
+                    </Typography>
                     <Box sx={{
                         display: "flex",
                         justifyContent: "flex-start",
