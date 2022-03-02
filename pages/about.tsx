@@ -8,7 +8,7 @@ interface WorkExperience {
     companyLogoLink: string,
     startDate: string,
     endDate: string,
-    description: any,
+    description: string,
     technologies: string[],
 }
 

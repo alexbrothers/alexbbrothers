@@ -1,6 +1,5 @@
-import { Box, Card, Paper, Typography, Avatar, Grid, Chip } from "@mui/material";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { Box, Button, Paper, Typography, Avatar, Chip } from "@mui/material";
+import React, { useEffect, useRef } from "react";
 
 interface WorkCardProps {
     title: string,
@@ -8,11 +7,37 @@ interface WorkCardProps {
     companyLogoLink: string,
     startDate: string,
     endDate: string,
-    description: any,
+    description: string,
     technologies: string[],
 }
 
 export default function WorkCard(props: WorkCardProps) {
+    const [isClamped, setIsClamped] = React.useState<boolean>(false);
+    const [hasLimitedLines, setHasLimitedLines] = React.useState<boolean>(true);
+    const clampedEl = useRef(null);
+
+    const isTextClamped = (element): boolean => {
+        return element.scrollHeight > element.clientHeight;
+    }
+
+    const onClampedClick = () => {
+        setIsClamped(false);
+        setHasLimitedLines(false);
+    }
+
+    const onUnclampedClick = () => {
+        setIsClamped(true);
+        setHasLimitedLines(true);
+    }
+
+    useEffect(() => {
+        const clamped = clampedEl.current;
+        if (isTextClamped(clamped)) {
+            setIsClamped(true);
+        }
+    }, []);
+    
+
     return (
         <Paper elevation={6} sx={{
             width: "100%",
@@ -20,7 +45,7 @@ export default function WorkCard(props: WorkCardProps) {
                 xs: "10px",
                 md: "20px",
             },
-            marginBotton: "20px"
+            marginBottom: "20px"
         }}>
             <Box sx={{
                 display: "flex",
@@ -51,7 +76,7 @@ export default function WorkCard(props: WorkCardProps) {
                 <Box sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center"
+                    justifyContent: "flex-start",
                 }}>
                     <Typography paragraph variant="h6" sx={{
                         marginTop: "8px",
@@ -64,19 +89,53 @@ export default function WorkCard(props: WorkCardProps) {
                     }}>
                         {props.company}
                     </Typography>
-                    <Typography paragraph fontWeight={300}>
+                    <Typography paragraph fontWeight={300} sx={{
+                        marginBottom: "16px",
+                    }}>
                         {props.startDate} - {props.endDate}
                     </Typography>
-                    <Box>
-                        {documentToReactComponents(
-                            props.description,
-                            {
-                                renderNode: {
-                                    [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph>{children}</Typography>
-                                }
-                            }
-                        )}
-                    </Box>
+                    <Typography paragraph gutterBottom ref={clampedEl} sx={
+                        hasLimitedLines ?
+                        {
+                            display: "-webkit-box",
+                            WebkitLineClamp: 4,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            padding: 0,
+                            marginBottom: 1,
+                        } :
+                        {}
+                    }>
+                        {props.description}
+                    </Typography>
+                    {isClamped && (
+                        <Button 
+                            variant="text"
+                            size="small"
+                            sx={{
+                                padding: 0,
+                                justifyContent: "flex-start",
+                                display: "flex",
+                            }}
+                            onClick={onClampedClick}
+                        >
+                            See more
+                        </Button>
+                    )}
+                    {!isClamped && !hasLimitedLines && (
+                        <Button 
+                            variant="text"
+                            size="small"
+                            sx={{
+                                padding: 0,
+                                justifyContent: "flex-start",
+                                display: "flex",
+                            }}
+                            onClick={onUnclampedClick}
+                        >
+                            See less
+                        </Button>
+                    )}
                     <Box sx={{
                         display: "flex",
                         justifyContent: "flex-start",
@@ -84,6 +143,8 @@ export default function WorkCard(props: WorkCardProps) {
                         columnGap: "10px",
                         rowGap: "10px",
                         flexWrap: "wrap",
+                        marginTop: "16px",
+                        marginBottom: "8px",
                     }}>
                         {props.technologies.map(tech => (
                             <Chip label={tech} />
