@@ -49,18 +49,16 @@ export default function BlogCard(props: BlogCardProps) {
                         marginBottom: "8px",
                         overflow: "hidden",
                     }}>
-                        <Box>
-                            {documentToReactComponents(
-                                props.content,
-                                {
-                                    renderNode: {
-                                        [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph sx={{
-                                            whiteSpace: "normal",
-                                        }}>{children}</Typography>
-                                    }
+                        {documentToReactComponents(
+                            props.content,
+                            {
+                                renderNode: {
+                                    [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph component="div" sx={{
+                                        whiteSpace: "normal",
+                                    }}>{children}</Typography>
                                 }
-                            )}
-                        </Box>
+                            }
+                        )}
                     </Typography>
                     <Box sx={{
                         display: "flex",
