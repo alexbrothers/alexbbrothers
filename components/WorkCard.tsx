@@ -102,7 +102,6 @@ export default function WorkCard(props: WorkCardProps) {
                             WebkitBoxOrient: "vertical",
                             overflow: "hidden",
                             padding: 0,
-                            marginBottom: 1,
                         } :
                         {}
                     }>
