@@ -28,6 +28,7 @@ interface BlogPost {
   content: any,
   author: Author,
   tags: string[],
+  contentPreview: string,
 }
 
 export default function Home(props: HomeProps) {
@@ -75,6 +76,7 @@ export const getStaticProps: GetStaticProps = async context => {
               avatarPhotoLink: item.fields.author.fields.avatar.fields.file.url,
             },
             tags: item.fields.tags,
+            contentPreview: item.fields.contentPreview,
           }
         ))
       }

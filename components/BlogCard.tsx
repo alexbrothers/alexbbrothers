@@ -17,6 +17,7 @@ interface BlogCardProps {
     tags: string[],
     author: Author,
     lastUpdated: string,
+    contentPreview: string,
 }
 
 export default function BlogCard(props: BlogCardProps) {
@@ -42,25 +43,14 @@ export default function BlogCard(props: BlogCardProps) {
                     <Typography paragraph fontWeight={300}>
                         {new Date(props.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Typography component="div" noWrap gutterBottom sx={{
+                    <Typography paragraph gutterBottom sx={{
                         display: "-webkit-box",
                         WebkitLineClamp: 4,
                         WebkitBoxOrient: "vertical",
                         marginBottom: "8px",
                         overflow: "hidden",
                     }}>
-                        <div>
-                            {documentToReactComponents(
-                                props.content,
-                                {
-                                    renderNode: {
-                                        [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph component="div" sx={{
-                                            whiteSpace: "normal",
-                                        }}>{children}</Typography>
-                                    }
-                                }
-                            )}
-                        </div>
+                        {props.contentPreview}
                     </Typography>
                     <Box sx={{
                         display: "flex",

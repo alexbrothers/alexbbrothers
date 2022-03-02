@@ -13,6 +13,7 @@ interface BlogPost {
     content: any,
     author: Author,
     tags: string[],
+    contentPreview: string,
 }
 
 interface Author {
@@ -43,6 +44,7 @@ export default function Blog(props: BlogsPageProps) {
                             tags={blog.tags}
                             author={blog.author}
                             lastUpdated={blog.lastUpdated}
+                            contentPreview={blog.contentPreview}
                         />
                     </Grid>
                 ))
@@ -76,6 +78,7 @@ export const getStaticProps: GetStaticProps = async context => {
                             avatarPhotoLink: item.fields.author.fields.avatar.fields.file.url,
                         },
                         tags: item.fields.tags,
+                        contentPreview: item.fields.contentPreview,
                     }
                 ))
             }

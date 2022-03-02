@@ -11,6 +11,7 @@ interface BlogPost {
     content: any,
     author: Author,
     tags: string[],
+    contentPreview: string,
 }
 
 interface Author {
@@ -45,6 +46,7 @@ export default function RecentBlogsSection(props: RecentBlogsSectionProps) {
                         tags={blog.tags}
                         author={blog.author}
                         lastUpdated={blog.lastUpdated}
+                        contentPreview={blog.contentPreview}
                     />
                 ))
             }
