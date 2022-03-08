@@ -25,6 +25,8 @@ interface AboutProps {
 }
 
 export default function About(props: AboutProps) {
+  const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
+  const canonicalUrl = process.env.BASE_URL || "https://alexbbrothers.vercel.app";
   return (
     <>
       <Head>
@@ -44,7 +46,12 @@ export default function About(props: AboutProps) {
         />
         <meta
           property="og:image"
-          content="https://alexbrothers.dev/avatar.png"
+          content={`${baseUrl}/avatar.png`}
+        />
+        <link
+          rel="canonical"
+          href={`${canonicalUrl}/about`}
+          key="canonical"
         />
       </Head>
       <AboutSection

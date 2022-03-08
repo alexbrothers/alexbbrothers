@@ -27,6 +27,7 @@ interface BlogPostProps {
 
 export default function BlogPost(props: BlogPostProps) {
     const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
+    const canonicalUrl = process.env.BASE_URL || "https://alexbbrothers.vercel.app";
     return (
         <>
             <Head>
@@ -47,6 +48,11 @@ export default function BlogPost(props: BlogPostProps) {
                 <meta
                     property="og:image"
                     content={`${baseUrl}/avatar.png`}
+                />
+                <link
+                    rel="canonical"
+                    href={`${canonicalUrl}/${props.url}`}
+                    key="canonical"
                 />
             </Head>
             <SectionContainer>
