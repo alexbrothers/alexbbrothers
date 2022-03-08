@@ -27,7 +27,6 @@ interface RecentBlogsSectionProps {
 }
 
 export default function RecentBlogsSection(props: RecentBlogsSectionProps) {
-    props.blogs.forEach(blog => console.log("BLOG URL: ", blog.url));
   return (
     <SectionContainer>
         <SectionHeader name={props.header} />
