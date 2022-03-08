@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <HideAppBar />
       <Container>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </Container>
     </ThemeProvider>
   )

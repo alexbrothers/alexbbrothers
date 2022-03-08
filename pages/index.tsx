@@ -59,7 +59,7 @@ export default function Home(props: HomeProps) {
         />
         <link
           rel="canonical"
-          href="https://example.com/blog/original-post"
+          href={`${canonicalUrl}`}
           key="canonical"
         />
       </Head>

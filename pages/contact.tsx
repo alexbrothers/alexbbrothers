@@ -129,21 +129,26 @@ export default function Contact(props: Contact) {
             <Head>
                 <title>Contact | AlexBrothers</title>
                 <meta
-                name="description"
-                content="Contact Alex Brothers."
-                key="desc"
+                    name="description"
+                    content="Contact Alex Brothers."
+                    key="desc"
                 />
                 <meta
-                property="og:title"
-                content="Contact | AlexBrothers"
+                    property="og:title"
+                    content="Contact | AlexBrothers"
                 />
                 <meta
-                property="og:description"
-                content="Contact Alex Brothers."
+                    property="og:description"
+                    content="Contact Alex Brothers."
                 />
                 <meta
-                property="og:image"
-                content={`${baseUrl}/avatar.png`}
+                    property="og:image"
+                    content={`${baseUrl}/avatar.png`}
+                />
+                <link
+                    rel="canonical"
+                    href={`${canonicalUrl}/contact`}
+                    key="canonical"
                 />
             </Head>
             <SectionContainer>
