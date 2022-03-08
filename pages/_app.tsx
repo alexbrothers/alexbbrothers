@@ -12,10 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
-  const googleAnalyticsTag = process.env.GOOGLE_ANALYTICS_TAG;
+  const googleAnalyticsTag = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TAG;
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsTag}`}
@@ -31,11 +31,13 @@ export default function App({ Component, pageProps }: AppProps) {
           `
         }
       </Script>
-      <CssBaseline />
-      <HideAppBar />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <HideAppBar />
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </ThemeProvider>
+    </>
   )
 }

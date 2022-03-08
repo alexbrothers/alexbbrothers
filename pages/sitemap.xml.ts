@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { getContentfulClient } from "../lib/contentful";
 
-const baseUrl: string = process.env.BASE_URL || "https://alexbrothers.dev";
+const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || "https://alexbrothers.dev";
 
 function generateSiteMap(blogIds: string[]) {
     return `<?xml version="1.0" encoding="UTF-8"?>
