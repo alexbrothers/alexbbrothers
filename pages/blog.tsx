@@ -4,6 +4,7 @@ import SectionHeader from "../components/SectionHeader";
 import BlogCard from "../components/BlogCard";
 import { getContentfulClient } from "../lib/contentful";
 import { GetStaticProps } from 'next'
+import Head from 'next/head';
 
 interface BlogPost {
     id: string,
@@ -29,28 +30,50 @@ interface BlogsPageProps {
 
 export default function Blog(props: BlogsPageProps) {
   return (
-    <SectionContainer>
-        <SectionHeader name={props.header} />
-        <Grid container spacing={4}>
-            {
-                props.blogs.map(blog => (
-                    <Grid item xs={12} md={6}>
-                        <BlogCard
-                            key={blog.id}
-                            id={blog.id}
-                            title={blog.title}
-                            createdAt={blog.createdAt}
-                            content={blog.content}
-                            tags={blog.tags}
-                            author={blog.author}
-                            lastUpdated={blog.lastUpdated}
-                            contentPreview={blog.contentPreview}
-                        />
-                    </Grid>
-                ))
-            }
-        </Grid>
-    </SectionContainer>
+    <>
+        <Head>
+            <title>Blogs | AlexBrothers</title>
+            <meta
+            name="description"
+            content="Blog posts from Alex Brothers."
+            key="desc"
+            />
+            <meta
+            property="og:title"
+            content="Blogs | AlexBrothers"
+            />
+            <meta
+            property="og:description"
+            content="Blog posts from Alex Brothers."
+            />
+            <meta
+            property="og:image"
+            content="https://alexbrothers.dev/avatar.png"
+            />
+        </Head>
+        <SectionContainer>
+            <SectionHeader name={props.header} />
+            <Grid container spacing={4}>
+                {
+                    props.blogs.map(blog => (
+                        <Grid item xs={12} md={6}>
+                            <BlogCard
+                                key={blog.id}
+                                id={blog.id}
+                                title={blog.title}
+                                createdAt={blog.createdAt}
+                                content={blog.content}
+                                tags={blog.tags}
+                                author={blog.author}
+                                lastUpdated={blog.lastUpdated}
+                                contentPreview={blog.contentPreview}
+                            />
+                        </Grid>
+                    ))
+                }
+            </Grid>
+        </SectionContainer>
+    </>
   )
 }
 

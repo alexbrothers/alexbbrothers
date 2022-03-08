@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next'
 import { getContentfulClient } from "../lib/contentful";
 import HeaderSection from "../components/HeaderSection";
 import RecentBlogsSection from "../components/RecentBlogsSection";
+import Head from 'next/head';
 
 interface IntroContent {
   headline: string,
@@ -34,6 +35,26 @@ interface BlogPost {
 export default function Home(props: HomeProps) {
   return (
     <>
+      <Head>
+        <title>AlexBrothers | Coding Interview Practice, Guides, and Solutions</title>
+        <meta
+          name="description"
+          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials."
+          key="desc"
+        />
+        <meta
+          property="og:title"
+          content="AlexBrothers | Coding Interview Practice, Guides, and Solutions"
+        />
+        <meta
+          property="og:description"
+          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials."
+        />
+        <meta
+          property="og:image"
+          content="https://alexbrothers.dev/avatar.png"
+        />
+      </Head>
       <HeaderSection 
         headline={props.introContent.headline}
         subHeadline={props.introContent.subHeadline}

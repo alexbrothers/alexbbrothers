@@ -6,6 +6,7 @@ import SectionHeader from "../../components/SectionHeader";
 import { getContentfulClient } from "../../lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
+import Head from 'next/head';
 
 interface Author {
     firstName: string,
@@ -20,11 +21,32 @@ interface BlogPostProps {
     tags: string[],
     author: Author,
     lastUpdated: string,
+    contentPreview: string,
 }
 
 export default function BlogPost(props: BlogPostProps) {
     return (
         <>
+            <Head>
+                <title>{props.title}</title>
+                <meta
+                    name="description"
+                    content={props.contentPreview}
+                    key="desc"
+                />
+                <meta
+                    property="og:title"
+                    content={props.title}
+                />
+                <meta
+                    property="og:description"
+                    content={props.contentPreview}
+                />
+                <meta
+                    property="og:image"
+                    content="https://alexbrothers.dev/avatar.png"
+                />
+            </Head>
             <SectionContainer>
                 <SectionHeader name={props.title}/>
                 <AuthorInfo 
@@ -93,6 +115,7 @@ export const getStaticProps: GetStaticProps = async context => {
                     avatarPhotoLink: blog.author.fields.avatar.fields.file.url,
                 },
                 lastUpdated: blog.lastUpdated,
+                contentPreview: blog.contentPreview,
             }
         }
     } catch(e: any) {

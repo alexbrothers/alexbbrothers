@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { getContentfulClient } from "../lib/contentful";
 import AboutSection from '../components/AboutSection';
+import Head from 'next/head';
 
 interface WorkExperience {
     title: string,
@@ -26,6 +27,26 @@ interface AboutProps {
 export default function About(props: AboutProps) {
   return (
     <>
+      <Head>
+        <title>About | AlexBrothers</title>
+        <meta
+          name="description"
+          content="Learn more about Alex Brothers."
+          key="desc"
+        />
+        <meta
+          property="og:title"
+          content="About | AlexBrothers"
+        />
+        <meta
+          property="og:description"
+          content="Learn more about Alex Brothers."
+        />
+        <meta
+          property="og:image"
+          content="https://alexbrothers.dev/avatar.png"
+        />
+      </Head>
       <AboutSection
         header={props.aboutContent.header}
         content={props.aboutContent.content}

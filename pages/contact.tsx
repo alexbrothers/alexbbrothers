@@ -5,6 +5,7 @@ import { getContentfulClient } from "../lib/contentful";
 import { GetStaticProps } from 'next'
 import React from "react";
 import validator from 'validator';
+import Head from 'next/head';
 
 interface FormErrors {
     name: boolean,
@@ -122,6 +123,26 @@ export default function Contact(props: Contact) {
 
     return (
         <>
+            <Head>
+                <title>Contact | AlexBrothers</title>
+                <meta
+                name="description"
+                content="Contact Alex Brothers."
+                key="desc"
+                />
+                <meta
+                property="og:title"
+                content="Contact | AlexBrothers"
+                />
+                <meta
+                property="og:description"
+                content="Contact Alex Brothers."
+                />
+                <meta
+                property="og:image"
+                content="https://alexbrothers.dev/avatar.png"
+                />
+            </Head>
             <SectionContainer>
                 <Box sx={{
                     display: "flex",
