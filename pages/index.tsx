@@ -34,6 +34,7 @@ interface BlogPost {
 }
 
 export default function Home(props: HomeProps) {
+  const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
   return (
     <>
       <Head>
@@ -53,7 +54,7 @@ export default function Home(props: HomeProps) {
         />
         <meta
           property="og:image"
-          content="https://alexbrothers.dev/avatar.png"
+          content={`${baseUrl}/avatar.png`}
         />
       </Head>
       <HeaderSection 

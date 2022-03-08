@@ -19,6 +19,8 @@ interface Contact {
 }
 
 export default function Contact(props: Contact) {
+    const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
+
     const [nameValue, setNameValue] = React.useState<string>('');
     const [emailValue, setEmailValue] = React.useState<string>('');
     const [messageValue, setMessageValue] = React.useState<string>('');
@@ -140,7 +142,7 @@ export default function Contact(props: Contact) {
                 />
                 <meta
                 property="og:image"
-                content="https://alexbrothers.dev/avatar.png"
+                content={`${baseUrl}/avatar.png`}
                 />
             </Head>
             <SectionContainer>

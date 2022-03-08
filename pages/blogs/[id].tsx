@@ -26,6 +26,7 @@ interface BlogPostProps {
 }
 
 export default function BlogPost(props: BlogPostProps) {
+    const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
     return (
         <>
             <Head>
@@ -45,7 +46,7 @@ export default function BlogPost(props: BlogPostProps) {
                 />
                 <meta
                     property="og:image"
-                    content="https://alexbrothers.dev/avatar.png"
+                    content={`${baseUrl}/avatar.png`}
                 />
             </Head>
             <SectionContainer>
