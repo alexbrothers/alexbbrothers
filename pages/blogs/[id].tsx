@@ -22,6 +22,7 @@ interface BlogPostProps {
     author: Author,
     lastUpdated: string,
     contentPreview: string,
+    url: string,
 }
 
 export default function BlogPost(props: BlogPostProps) {
@@ -84,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         const paths = blogs.map(blog => (
             {
                 params: {
-                    id: blog.sys.id,
+                    id: blog.fields.url,
                 }
             }
         ));
@@ -101,8 +102,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async context => {
     const client = getContentfulClient();
     try {
-        const getBlogResponse = await client.getEntry(context.params.id as string);
-        const blog = getBlogResponse.fields as any;
+        const getBlogResponse = await client.getEntries({
+            content_type: "blogPost",
+            "fields.url": context.params.id,
+            limit: 1,
+        });
+        const blog = getBlogResponse.items[0].fields as any;
         return {
             props: {
                 title: blog.title,
@@ -116,6 +121,7 @@ export const getStaticProps: GetStaticProps = async context => {
                 },
                 lastUpdated: blog.lastUpdated,
                 contentPreview: blog.contentPreview,
+                url: blog.url
             }
         }
     } catch(e: any) {

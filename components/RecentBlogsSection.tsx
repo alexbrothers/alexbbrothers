@@ -12,6 +12,7 @@ interface BlogPost {
     author: Author,
     tags: string[],
     contentPreview: string,
+    url: string,
 }
 
 interface Author {
@@ -26,6 +27,7 @@ interface RecentBlogsSectionProps {
 }
 
 export default function RecentBlogsSection(props: RecentBlogsSectionProps) {
+    props.blogs.forEach(blog => console.log("BLOG URL: ", blog.url));
   return (
     <SectionContainer>
         <SectionHeader name={props.header} />
@@ -47,6 +49,7 @@ export default function RecentBlogsSection(props: RecentBlogsSectionProps) {
                         author={blog.author}
                         lastUpdated={blog.lastUpdated}
                         contentPreview={blog.contentPreview}
+                        url={blog.url}
                     />
                 ))
             }

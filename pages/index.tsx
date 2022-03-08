@@ -30,6 +30,7 @@ interface BlogPost {
   author: Author,
   tags: string[],
   contentPreview: string,
+  url: string,
 }
 
 export default function Home(props: HomeProps) {
@@ -98,6 +99,7 @@ export const getStaticProps: GetStaticProps = async context => {
             },
             tags: item.fields.tags,
             contentPreview: item.fields.contentPreview,
+            url: item.fields.url,
           }
         ))
       }

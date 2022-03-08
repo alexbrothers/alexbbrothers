@@ -1,6 +1,4 @@
-import { Box, Card, Paper, Typography, Avatar, Grid, Chip } from "@mui/material";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { Box, Paper, Typography, Chip } from "@mui/material";
 import Link from "next/link";
 
 interface Author {
@@ -18,11 +16,12 @@ interface BlogCardProps {
     author: Author,
     lastUpdated: string,
     contentPreview: string,
+    url: string,
 }
 
 export default function BlogCard(props: BlogCardProps) {
     return (
-        <Link href={`/blogs/${props.id}`}>
+        <Link href={`/blogs/${props.url}`}>
             <Paper elevation={6} sx={{
                 width: "100%",
                 padding: "30px",

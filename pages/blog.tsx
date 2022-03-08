@@ -15,6 +15,7 @@ interface BlogPost {
     author: Author,
     tags: string[],
     contentPreview: string,
+    url: string,
 }
 
 interface Author {
@@ -34,21 +35,21 @@ export default function Blog(props: BlogsPageProps) {
         <Head>
             <title>Blogs | AlexBrothers</title>
             <meta
-            name="description"
-            content="Blog posts from Alex Brothers."
-            key="desc"
+                name="description"
+                content="Blog posts from Alex Brothers."
+                key="desc"
             />
             <meta
-            property="og:title"
-            content="Blogs | AlexBrothers"
+                property="og:title"
+                content="Blogs | AlexBrothers"
             />
             <meta
-            property="og:description"
-            content="Blog posts from Alex Brothers."
+                property="og:description"
+                content="Blog posts from Alex Brothers."
             />
             <meta
-            property="og:image"
-            content="https://alexbrothers.dev/avatar.png"
+                property="og:image"
+                content="https://alexbrothers.dev/avatar.png"
             />
         </Head>
         <SectionContainer>
@@ -67,6 +68,7 @@ export default function Blog(props: BlogsPageProps) {
                                 author={blog.author}
                                 lastUpdated={blog.lastUpdated}
                                 contentPreview={blog.contentPreview}
+                                url={blog.url}
                             />
                         </Grid>
                     ))
@@ -102,6 +104,7 @@ export const getStaticProps: GetStaticProps = async context => {
                         },
                         tags: item.fields.tags,
                         contentPreview: item.fields.contentPreview,
+                        url: item.fields.url,
                     }
                 ))
             }

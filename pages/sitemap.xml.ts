@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             content_type: "blogPost",
         });
         const blogs = blogResponse.items as any;
-        paths = blogs.map(blog => blog.sys.id);
+        paths = blogs.map(blog => blog.fields.url);
     } catch(e: any) {
         console.log(`error retrieving blogs ids from contentful: ${e.message}`);
         throw e;
