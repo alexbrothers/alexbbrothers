@@ -27,7 +27,7 @@ interface BlogPostProps {
 
 export default function BlogPost(props: BlogPostProps) {
     const baseUrl = process.env.BASE_URL || "https://alexbrothers.dev";
-    const canonicalUrl = process.env.BASE_URL || "https://alexbbrothers.vercel.app";
+    const canonicalUrl = process.env.BASE_URL || "https://alexbrothers.dev";
     return (
         <>
             <Head>
