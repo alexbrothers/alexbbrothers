@@ -51,7 +51,7 @@ export default function BlogPost(props: BlogPostProps) {
                 />
                 <link
                     rel="canonical"
-                    href={`${canonicalUrl}/${props.url}`}
+                    href={`${canonicalUrl}/blogs/${props.url}`}
                     key="canonical"
                 />
             </Head>
