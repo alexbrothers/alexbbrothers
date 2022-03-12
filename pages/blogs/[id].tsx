@@ -1,12 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { GetStaticProps, GetStaticPaths } from 'next'
 import AuthorInfo from "../../components/AuthorInfo";
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import { getContentfulClient } from "../../lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import Head from 'next/head';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import androidstudio from 'react-syntax-highlighter/dist/cjs/styles/hljs/androidstudio';
 
 interface Author {
     firstName: string,
@@ -56,27 +58,50 @@ export default function BlogPost(props: BlogPostProps) {
                 />
             </Head>
             <SectionContainer>
-                <SectionHeader name={props.title}/>
-                <AuthorInfo 
-                    firstName={props.author.firstName}
-                    lastName={props.author.lastName}
-                    avatarPhotoLink={props.author.avatarPhotoLink}
-                />
-                <Typography variant="h6" fontWeight={300} sx={{
-                    marginBottom: "50px"
-                }}>
-                    Posted on {new Date(props.createdAt).toLocaleDateString()}
-                </Typography>
-                <Box>
-                    {documentToReactComponents(
-                        props.content,
-                        {
-                            renderNode: {
-                                [BLOCKS.PARAGRAPH]: (_node, children) => <Typography paragraph>{children}</Typography>
+                <Container maxWidth="md">
+                    <SectionHeader name={props.title}/>
+                    <AuthorInfo 
+                        firstName={props.author.firstName}
+                        lastName={props.author.lastName}
+                        avatarPhotoLink={props.author.avatarPhotoLink}
+                    />
+                    <Typography variant="h6" fontWeight={300} sx={{
+                        marginBottom: "50px"
+                    }}>
+                        Posted on {new Date(props.createdAt).toLocaleDateString()}
+                    </Typography>
+                    <Box>
+                        {documentToReactComponents(
+                            props.content,
+                            {
+                                renderNode: {
+                                    [BLOCKS.PARAGRAPH]: (_node, children) => {
+                                        return <Typography paragraph>{children}</Typography>;
+                                    },
+                                    [BLOCKS.EMBEDDED_ENTRY]: (node, _children) => {
+                                        const type: string = node.data.target.sys.contentType.sys.id;
+                                        if (type === "codeBlock") {
+                                            const code: string = node.data.target.fields.code;
+                                            const language: string = node.data.target.fields.language;
+                                            return (
+                                                <SyntaxHighlighter language={language} style={androidstudio} showLineNumbers>
+                                                    {code}
+                                                </SyntaxHighlighter>
+                                            )
+                                        }
+                                    },
+                                    [INLINES.EMBEDDED_ENTRY]: (node) => {
+                                        const type: string = node.data.target.sys.contentType.sys.id;
+                                        if (type === "superscript") {
+                                            const value: string = node.data.target.fields.value;
+                                            return <sup>{value}</sup>;
+                                        }
+                                    }
+                                },
                             }
-                        }
-                    )}
-                </Box>
+                        )}
+                    </Box>
+                </Container>
             </SectionContainer>
         </>
     )
