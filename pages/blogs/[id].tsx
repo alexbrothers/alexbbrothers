@@ -5,7 +5,7 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import { getContentfulClient } from "../../lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Head from 'next/head';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import androidstudio from 'react-syntax-highlighter/dist/cjs/styles/hljs/androidstudio';
@@ -70,7 +70,15 @@ export default function BlogPost(props: BlogPostProps) {
                     }}>
                         Posted on {new Date(props.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Box>
+                    <Box sx={{
+                        "a": {
+                            color: "#0070f3",
+                            textDecoration: "none",
+                        },
+                        "a:hover": {
+                            textDecoration: "underline",
+                        }
+                    }}>
                         {documentToReactComponents(
                             props.content,
                             {
@@ -94,10 +102,31 @@ export default function BlogPost(props: BlogPostProps) {
                                         const type: string = node.data.target.sys.contentType.sys.id;
                                         if (type === "superscript") {
                                             const value: string = node.data.target.fields.value;
-                                            return <sup>{value}</sup>;
+                                            const code: boolean = node.data.target.fields.code;
+                                            if (!code) {
+                                                return (<sup>{value}</sup>);
+                                            }
+                                            return (
+                                                <Box component="code" sx={{
+                                                    backgroundColor: "#ECE5F1"
+                                                }}>
+                                                    <sup>{value}</sup>
+                                                </Box>    
+                                            );
                                         }
-                                    }
+                                    },
                                 },
+                                renderMark: {
+                                    [MARKS.CODE]: (text) => {
+                                        return (
+                                            <Box component="code" sx={{
+                                                backgroundColor: "#ECE5F1"
+                                            }}>
+                                                {text}
+                                            </Box>
+                                        );
+                                    }
+                                }
                             }
                         )}
                     </Box>

@@ -88,7 +88,6 @@ export const getStaticProps: GetStaticProps = async context => {
       limit: 5,
     });
     const recentBlogs = recentBlogsResponse.items as any;
-    console.log("RECENT BLOGS: ", JSON.stringify(recentBlogs, null, 2));
     return {
       props: {
         introContent: introResponse.items[0].fields,
