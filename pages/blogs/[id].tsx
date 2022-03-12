@@ -59,7 +59,7 @@ export default function BlogPost(props: BlogPostProps) {
             </Head>
             <SectionContainer>
                 <Container maxWidth="md">
-                    <SectionHeader name={props.title}/>
+                    <SectionHeader name={props.title} gutterBottom />
                     <AuthorInfo 
                         firstName={props.author.firstName}
                         lastName={props.author.lastName}

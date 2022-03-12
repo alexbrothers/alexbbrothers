@@ -12,7 +12,7 @@ export default function AuthorInfo(props: Author) {
             display: "flex",
             columnGap: "20px",
             alignItems: "center",
-            paddingBottom: "20px",
+            paddingBottom: "15px",
         }}>
             <Avatar alt={`${props.firstName} ${props.lastName}`} src={props.avatarPhotoLink} sx={{
                 width: 75,
