@@ -63,7 +63,7 @@ export default function HideAppBar() {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" component="nav">
           <Container>
             <Toolbar sx={{
               display: "flex",

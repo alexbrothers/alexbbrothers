@@ -70,7 +70,7 @@ export default function BlogPost(props: BlogPostProps) {
                     }}>
                         Posted on {new Date(props.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Box sx={{
+                    <Box component="article" sx={{
                         "a": {
                             color: "#0070f3",
                             textDecoration: "none",

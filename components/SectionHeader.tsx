@@ -14,6 +14,7 @@ export default function SectionHeader(props: SectionHeaderProps) {
         <Typography 
             variant="h4" 
             sx={styles}
+            component="header"
         >
             {props.name}
         </Typography>
