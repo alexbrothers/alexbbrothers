@@ -10,11 +10,18 @@ export function getContentfulClient(): ContentfulClientApi {
 }
 
 function initializeContentful(): ContentfulClientApi {
+    const environment: string = process.env.ENVIRONMENT || "development";
     const spaceId: string = process.env.CONTENTFUL_SPACE_ID;
     if (spaceId == null || spaceId == undefined) {
         throw new Error("Environment variable CONTENTFUL_SPACE_ID is required");
     }
-    const accessToken: string = process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN;
+    let accessToken: string;
+    if (environment === "development") {
+        accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+    }
+    else {
+        accessToken = process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN;
+    }
     if (accessToken == null || accessToken == undefined) {
         throw new Error("Environment variable CONTENTFUL_DELIVERY_ACCESS_TOKEN is required");
     }
@@ -26,6 +33,7 @@ function initializeContentful(): ContentfulClientApi {
         {
             accessToken: accessToken,
             space: spaceId,
+            host: environment === "development" ? "preview.contentful.com" : undefined,
         },
     );
 }
