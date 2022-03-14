@@ -64,12 +64,8 @@ export default function BlogPost(props: BlogPostProps) {
                         firstName={props.author.firstName}
                         lastName={props.author.lastName}
                         avatarPhotoLink={props.author.avatarPhotoLink}
+                        datePosted={props.createdAt}
                     />
-                    <Typography variant="h6" fontWeight={300} sx={{
-                        marginBottom: "50px"
-                    }}>
-                        Posted on {new Date(props.createdAt).toLocaleDateString()}
-                    </Typography>
                     <Box component="article" sx={{
                         "a": {
                             color: "#0070f3",
@@ -77,7 +73,8 @@ export default function BlogPost(props: BlogPostProps) {
                         },
                         "a:hover": {
                             textDecoration: "underline",
-                        }
+                        },
+                        marginTop: "50px",
                     }}>
                         {documentToReactComponents(
                             props.content,

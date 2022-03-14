@@ -4,6 +4,7 @@ interface Author {
     firstName: string,
     lastName: string,
     avatarPhotoLink: string,
+    datePosted: string,
 }
 
 export default function AuthorInfo(props: Author) {
@@ -18,9 +19,20 @@ export default function AuthorInfo(props: Author) {
                 width: 75,
                 height: 75,
             }}/>
-            <Typography component="div">
-                {`${props.firstName} ${props.lastName}`}
-            </Typography>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    rowGap: "5px",
+                }}
+            >
+                <Typography fontWeight={500}>
+                    {`${props.firstName} ${props.lastName}`}
+                </Typography>
+                <Typography>
+                    Posted on {new Date(props.datePosted).toLocaleDateString()}
+                </Typography>
+            </Box>
         </Box>
     )
 }
