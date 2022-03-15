@@ -20,6 +20,7 @@
     "contentful": "^9.1.12",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
+    "material-ui-image": "^3.3.2",
     "next": "latest",
     "nodemailer": "^6.7.2",
     "react": "17.0.2",

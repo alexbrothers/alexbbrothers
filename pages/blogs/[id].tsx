@@ -1,14 +1,14 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Modal } from "@mui/material";
 import { GetStaticProps, GetStaticPaths } from 'next'
 import AuthorInfo from "../../components/AuthorInfo";
 import SectionContainer from "../../components/SectionContainer";
-import SectionHeader from "../../components/SectionHeader";
 import { getContentfulClient } from "../../lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Head from 'next/head';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import androidstudio from 'react-syntax-highlighter/dist/cjs/styles/hljs/androidstudio';
+import BlogImage from "../../components/BlogImage";
 
 interface Author {
     firstName: string,
@@ -121,6 +121,16 @@ export default function BlogPost(props: BlogPostProps) {
                                             );
                                         }
                                     },
+                                    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+                                        const alt: string = node.data.target.fields.title;
+                                        const relativeUrl: string = node.data.target.fields.file.url;
+                                        const url: string = "https:".concat(relativeUrl);
+                                        const width: number = parseInt(node.data.target.fields.file.details.image.width);
+                                        const height: number = parseInt(node.data.target.fields.file.details.image.height);
+                                        return (
+                                            <BlogImage src={url} alt={alt} width={width} height={height} />
+                                        )
+                                    }
                                 },
                                 renderMark: {
                                     [MARKS.CODE]: (text) => {
