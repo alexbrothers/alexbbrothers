@@ -32,7 +32,7 @@ export default function BlogImage(props: BlogImageProps) {
                     component="div" 
                     sx={{
                         width: "100%",
-                        height: "100%",
+                        height: "auto",
                         position: "relative",
                         ":hover": {
                             cursor: "pointer",
