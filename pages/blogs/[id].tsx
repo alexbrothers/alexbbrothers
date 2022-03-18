@@ -28,8 +28,8 @@ interface BlogPostProps {
 }
 
 export default function BlogPost(props: BlogPostProps) {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://alexbrothers.dev";
-    const canonicalUrl = process.env.NEXT_PUBLIC_CANONICAL_URL || "https://alexbrothers.dev";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.alexbrothers.dev";
+    const canonicalUrl = process.env.NEXT_PUBLIC_CANONICAL_URL || "https://www.alexbrothers.dev";
     return (
         <>
             <Head>
