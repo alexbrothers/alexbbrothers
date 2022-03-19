@@ -1,8 +1,11 @@
 import { Typography } from "@mui/material";
 
+type Component = "h1" | "h2" | "h3" | "h4"
+
 interface SectionHeaderProps {
     name: string,
     gutterBottom?: boolean,
+    component: Component,
 }
 
 export default function SectionHeader(props: SectionHeaderProps) {
@@ -14,7 +17,7 @@ export default function SectionHeader(props: SectionHeaderProps) {
         <Typography 
             variant="h4" 
             sx={styles}
-            component="header"
+            component={props.component}
         >
             {props.name}
         </Typography>

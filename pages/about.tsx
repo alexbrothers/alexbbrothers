@@ -33,7 +33,7 @@ export default function About(props: AboutProps) {
         <title>About | AlexBrothers</title>
         <meta
           name="description"
-          content="Learn more about Alex Brothers."
+          content="Learn more about Alex Brothers and his background, his software engineering work experience, and technical credentials."
           key="desc"
         />
         <meta
@@ -42,11 +42,15 @@ export default function About(props: AboutProps) {
         />
         <meta
           property="og:description"
-          content="Learn more about Alex Brothers."
+          content="Learn more about Alex Brothers and his background, his software engineering work experience, and technical credentials."
         />
         <meta
           property="og:image"
           content={`${baseUrl}/avatar.png`}
+        />
+        <meta
+          property="og:url"
+          content={`${canonicalUrl}/about`}
         />
         <link
           rel="canonical"

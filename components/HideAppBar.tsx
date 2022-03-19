@@ -63,7 +63,7 @@ export default function HideAppBar() {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll>
-        <AppBar position="fixed" component="nav">
+        <AppBar position="fixed" component="header">
           <Container>
             <Toolbar sx={{
               display: "flex",
@@ -72,7 +72,7 @@ export default function HideAppBar() {
                 md: "flex-end",
               },
             }}>
-              <Box sx={{
+              <Box component="nav" sx={{
                 display: {
                   xs: "none",
                   md: "flex",
@@ -150,13 +150,15 @@ export default function HideAppBar() {
                     display: { xs: 'block', md: 'none' },
                   }}
                 >
-                  {pages.map((page) => (
-                    <Link key={page.name} href={page.link}>
-                      <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{page.name}</Typography>
-                      </MenuItem>
-                    </Link>
-                  ))}
+                  <Box component="nav">
+                    {pages.map((page) => (
+                      <Link key={page.name} href={page.link}>
+                        <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                          <Typography textAlign="center">{page.name}</Typography>
+                        </MenuItem>
+                      </Link>
+                    ))}
+                  </Box>
                 </Menu>
               </Box>
             </Toolbar>

@@ -21,7 +21,7 @@ interface BlogCardProps {
 
 export default function BlogCard(props: BlogCardProps) {
     return (
-        <Box sx={{
+        <Box component="article" sx={{
             "a": {
                 textDecoration: "none",
             }
@@ -67,7 +67,7 @@ export default function BlogCard(props: BlogCardProps) {
                                 paddingTop: "8px",
                             }}>
                                 {props.tags.map(tech => (
-                                    <Chip label={tech} />
+                                    <Chip key={tech} label={tech} />
                                 ))}
                             </Box>
                         </Box>

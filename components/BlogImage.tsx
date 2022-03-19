@@ -24,7 +24,7 @@ export default function BlogImage(props: BlogImageProps) {
                 }}
                 onClick={e => window.open(`${props.src}`, "_blank")}
             >
-                    <img src={props.src} width={"100%"} />
+                    <img src={props.src} alt={props.alt} width={"100%"} />
             </Box>
         </>
     )

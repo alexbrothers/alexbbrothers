@@ -38,7 +38,7 @@ export default function Blog(props: BlogsPageProps) {
             <title>Blogs | AlexBrothers</title>
             <meta
                 name="description"
-                content="Blog posts from Alex Brothers."
+                content="Blog posts from Alex Brothers about solutions to coding interview problems, step by step explainations of LeetCode problem solutions, and technical tutorials."
                 key="desc"
             />
             <meta
@@ -47,11 +47,15 @@ export default function Blog(props: BlogsPageProps) {
             />
             <meta
                 property="og:description"
-                content="Blog posts from Alex Brothers."
+                content="Blog posts from Alex Brothers about solutions to coding interview problems, step by step explainations of LeetCode problem solutions, and technical tutorials."
             />
             <meta
                 property="og:image"
                 content={`${baseUrl}/avatar.png`}
+            />
+            <meta
+                property="og:url"
+                content={`${canonicalUrl}/blog`}
             />
             <link
                 rel="canonical"
@@ -60,11 +64,11 @@ export default function Blog(props: BlogsPageProps) {
             />
         </Head>
         <SectionContainer>
-            <SectionHeader name={props.header} />
+            <SectionHeader name={props.header} component="h1" />
             <Grid container spacing={4}>
                 {
                     props.blogs.map(blog => (
-                        <Grid item xs={12} md={6}>
+                        <Grid item key={blog.id} xs={12} md={6}>
                             <BlogCard
                                 key={blog.id}
                                 id={blog.id}

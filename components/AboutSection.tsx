@@ -26,7 +26,7 @@ export default function AboutSection(props: AboutContent) {
   return (
       <>
     <SectionContainer>
-      <SectionHeader name={props.header} />
+      <SectionHeader name={props.header} component="h1" />
       <Box sx={{
         display: "flex",
         flexDirection: {

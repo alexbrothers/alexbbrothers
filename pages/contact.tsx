@@ -130,7 +130,7 @@ export default function Contact(props: Contact) {
                 <title>Contact | AlexBrothers</title>
                 <meta
                     name="description"
-                    content="Contact Alex Brothers."
+                    content="Contact Alex Brothers about coding interview questions, LeetCode problems, or questions reguarding blog materials. Feel free to leave a comment or just say hi!"
                     key="desc"
                 />
                 <meta
@@ -139,11 +139,15 @@ export default function Contact(props: Contact) {
                 />
                 <meta
                     property="og:description"
-                    content="Contact Alex Brothers."
+                    content="Contact Alex Brothers about coding interview questions, LeetCode problems, or questions reguarding blog materials. Feel free to leave a comment or just say hi!"
                 />
                 <meta
                     property="og:image"
                     content={`${baseUrl}/avatar.png`}
+                />
+                <meta
+                    property="og:url"
+                    content={`${canonicalUrl}/contact`}
                 />
                 <link
                     rel="canonical"
@@ -159,7 +163,7 @@ export default function Contact(props: Contact) {
                     alignItems: "center",
                     rowGap: "30px"
                 }}>
-                    <SectionHeader name={props.header} />
+                    <SectionHeader name={props.header} component="h1" />
                     <Typography paragraph>
                         {props.slug}
                     </Typography>

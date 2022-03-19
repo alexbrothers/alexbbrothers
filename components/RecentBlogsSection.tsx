@@ -29,7 +29,7 @@ interface RecentBlogsSectionProps {
 export default function RecentBlogsSection(props: RecentBlogsSectionProps) {
   return (
     <SectionContainer>
-        <SectionHeader name={props.header} />
+        <SectionHeader name={props.header} component="h2" />
         <Box sx={{
             display: "flex",
             width: "100%",

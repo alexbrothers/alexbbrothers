@@ -21,7 +21,7 @@ interface WorkExperienceSectionProps {
 export default function WorkExperienceSection(props: WorkExperienceSectionProps) {
   return (
     <SectionContainer>
-        <SectionHeader name={props.header} />
+        <SectionHeader name={props.header} component="h2" />
         <Box sx={{
             display: "flex",
             width: "100%",
@@ -31,6 +31,7 @@ export default function WorkExperienceSection(props: WorkExperienceSectionProps)
             {
                 props.workExperience.map(item => (
                     <WorkCard
+                        key={item.title}
                         title={item.title}
                         company={item.company}
                         companyLogoLink={item.companyLogoLink}

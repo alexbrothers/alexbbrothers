@@ -42,7 +42,7 @@ export default function Home(props: HomeProps) {
         <title>AlexBrothers | Coding Interview Practice, Guides, and Solutions</title>
         <meta
           name="description"
-          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials."
+          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials. Ace your technical interviews, improve your coding skills, and discover solutions to numerous LeetCode problems here on alexbrothers.dev."
           key="desc"
         />
         <meta
@@ -51,11 +51,15 @@ export default function Home(props: HomeProps) {
         />
         <meta
           property="og:description"
-          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials."
+          content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials. Ace your technical interviews, improve your coding skills, and discover solutions to numerous LeetCode problems here on alexbrothers.dev."
         />
         <meta
           property="og:image"
           content={`${baseUrl}/avatar.png`}
+        />
+        <meta
+          property="og:url"
+          content={`${canonicalUrl}`}
         />
         <link
           rel="canonical"

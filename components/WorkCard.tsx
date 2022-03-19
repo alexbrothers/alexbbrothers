@@ -146,7 +146,7 @@ export default function WorkCard(props: WorkCardProps) {
                         marginBottom: "8px",
                     }}>
                         {props.technologies.map(tech => (
-                            <Chip label={tech} />
+                            <Chip key={tech} label={tech} />
                         ))}
                     </Box>
                 </Box>
