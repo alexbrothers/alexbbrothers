@@ -23,57 +23,56 @@ export default function BlogCard(props: BlogCardProps) {
     return (
         <Box component="article" sx={{
             "a": {
+                color: "#0070f3",
                 textDecoration: "none",
-            }
+            },
+            "a:hover": {
+                textDecoration: "underline",
+            },
         }}>
-            <Link href={`/blogs/${props.url}`}>
-                <a>
-                    <Paper elevation={6} sx={{
-                        width: "100%",
-                        padding: "30px",
-                        marginBotton: "20px",
-                        ":hover": {
-                            cursor: "pointer",
-                        }
+            <Paper elevation={6} sx={{
+                width: "100%",
+                padding: "30px",
+                marginBotton: "20px"
+            }}>
+                <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                }}>
+                    <Typography component="h3" fontWeight={600} variant="h6" sx={{
+                        marginBottom: "8px",
                     }}>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                        }}>
-                            <Typography paragraph fontWeight={600} variant="h6" sx={{
-                                marginBottom: "8px",
-                            }}>
-                                {props.title}
-                            </Typography>
-                            <Typography paragraph fontWeight={300}>
-                                {new Date(props.createdAt).toLocaleDateString()}
-                            </Typography>
-                            <Typography paragraph gutterBottom sx={{
-                                display: "-webkit-box",
-                                WebkitLineClamp: 4,
-                                WebkitBoxOrient: "vertical",
-                                marginBottom: "8px",
-                                overflow: "hidden",
-                            }}>
-                                {props.contentPreview}
-                            </Typography>
-                            <Box sx={{
-                                display: "flex",
-                                justifyContent: "flex-start",
-                                alignItems: "center",
-                                columnGap: "10px",
-                                rowGap: "10px",
-                                flexWrap: "wrap",
-                                paddingTop: "8px",
-                            }}>
-                                {props.tags.map(tech => (
-                                    <Chip key={tech} label={tech} />
-                                ))}
-                            </Box>
-                        </Box>
-                    </Paper>
-                </a>
-            </Link>
+                        <Link href={`/blogs/${props.url}`}>
+                            <a>{props.title}</a>
+                        </Link>
+                    </Typography>
+                    <Typography paragraph fontWeight={300}>
+                        {new Date(props.createdAt).toLocaleDateString()}
+                    </Typography>
+                    <Typography paragraph gutterBottom sx={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 4,
+                        WebkitBoxOrient: "vertical",
+                        marginBottom: "8px",
+                        overflow: "hidden",
+                    }}>
+                        {props.contentPreview}
+                    </Typography>
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        columnGap: "10px",
+                        rowGap: "10px",
+                        flexWrap: "wrap",
+                        paddingTop: "8px",
+                    }}>
+                        {props.tags.map(tech => (
+                            <Chip key={tech} label={tech} />
+                        ))}
+                    </Box>
+                </Box>
+            </Paper>
         </Box>
     )
 }

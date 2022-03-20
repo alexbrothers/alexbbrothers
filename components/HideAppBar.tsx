@@ -150,13 +150,23 @@ export default function HideAppBar() {
                     display: { xs: 'block', md: 'none' },
                   }}
                 >
-                  <Box component="nav">
+                  <Box component="nav" sx={{
+                    "a": {
+                      color: "text.primary",
+                      textDecoration: "none",
+                    },
+                    "a:hover": {
+                      textDecoration: "underline",
+                    }
+                  }}>
                     {pages.map((page) => (
-                      <Link key={page.name} href={page.link}>
-                        <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                          <Typography textAlign="center">{page.name}</Typography>
-                        </MenuItem>
-                      </Link>
+                      <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">
+                          <Link href={page.link}>
+                            <a>{page.name}</a>
+                          </Link>
+                        </Typography>
+                      </MenuItem>
                     ))}
                   </Box>
                 </Menu>
