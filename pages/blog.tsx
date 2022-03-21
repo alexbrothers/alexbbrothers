@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import SectionContainer from "../components/SectionContainer";
 import SectionHeader from "../components/SectionHeader";
 import BlogCard from "../components/BlogCard";
@@ -65,7 +65,7 @@ export default function Blog(props: BlogsPageProps) {
         </Head>
         <SectionContainer>
             <SectionHeader name={props.header} component="h1" />
-            <Grid container spacing={4} alignItems="center">
+            <Grid container spacing={4} alignItems="stretch">
                 {
                     props.blogs.map(blog => (
                         <Grid item key={blog.id} xs={12} md={6}>

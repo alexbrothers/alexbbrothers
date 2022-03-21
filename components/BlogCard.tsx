@@ -29,15 +29,19 @@ export default function BlogCard(props: BlogCardProps) {
             "a:hover": {
                 textDecoration: "underline",
             },
+            height: "100%"
         }}>
             <Paper elevation={6} sx={{
                 width: "100%",
                 padding: "30px",
                 marginBotton: "20px",
+                height: "100%",
             }}>
                 <Box sx={{
                     display: "flex",
                     flexDirection: "column",
+                    justifyContent: "space-between",
+                    height: "100%"
                 }}>
                     <Typography component="h3" fontWeight={600} variant="h6" sx={{
                         marginBottom: "8px",
