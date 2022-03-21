@@ -65,7 +65,7 @@ export default function Blog(props: BlogsPageProps) {
         </Head>
         <SectionContainer>
             <SectionHeader name={props.header} component="h1" />
-            <Grid container spacing={4}>
+            <Grid container spacing={4} alignItems="center">
                 {
                     props.blogs.map(blog => (
                         <Grid item key={blog.id} xs={12} md={6}>

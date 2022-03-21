@@ -33,7 +33,7 @@ export default function BlogCard(props: BlogCardProps) {
             <Paper elevation={6} sx={{
                 width: "100%",
                 padding: "30px",
-                marginBotton: "20px"
+                marginBotton: "20px",
             }}>
                 <Box sx={{
                     display: "flex",
@@ -51,7 +51,7 @@ export default function BlogCard(props: BlogCardProps) {
                     </Typography>
                     <Typography paragraph gutterBottom sx={{
                         display: "-webkit-box",
-                        WebkitLineClamp: 4,
+                        WebkitLineClamp: 3,
                         WebkitBoxOrient: "vertical",
                         marginBottom: "8px",
                         overflow: "hidden",
