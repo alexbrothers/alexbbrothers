@@ -95,6 +95,7 @@ export const getStaticProps: GetStaticProps = async context => {
     try {
         const blogsResponse = await client.getEntries({
             content_type: "blogPost",
+            order: "-sys.createdAt",
         });
         const blogs = blogsResponse.items as any;
         return {

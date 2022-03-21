@@ -90,6 +90,7 @@ export const getStaticProps: GetStaticProps = async context => {
     const recentBlogsResponse = await client.getEntries({
       content_type: "blogPost",
       limit: 5,
+      order: "-sys.createdAt",
     });
     const recentBlogs = recentBlogsResponse.items as any;
     return {
