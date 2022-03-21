@@ -39,7 +39,7 @@ export default function Home(props: HomeProps) {
   return (
     <>
       <Head>
-        <title>AlexBrothers | Coding Interview Practice, Guides, and Solutions</title>
+        <title>Alex Brothers | Coding Interview Practice, Guides, and Solutions</title>
         <meta
           name="description"
           content="Blog posts by Alex Brothers about coding interviews, systems design, and technical tutorials. Ace your technical interviews, improve your coding skills, and discover solutions to numerous LeetCode problems here on alexbrothers.dev."
@@ -47,7 +47,7 @@ export default function Home(props: HomeProps) {
         />
         <meta
           property="og:title"
-          content="AlexBrothers | Coding Interview Practice, Guides, and Solutions"
+          content="Alex Brothers | Coding Interview Practice, Guides, and Solutions"
         />
         <meta
           property="og:description"

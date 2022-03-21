@@ -127,7 +127,7 @@ export default function Contact(props: Contact) {
     return (
         <>
             <Head>
-                <title>Contact | AlexBrothers</title>
+                <title>Contact | Alex Brothers</title>
                 <meta
                     name="description"
                     content="Contact Alex Brothers about coding interview questions, LeetCode problems, or questions reguarding blog materials. Feel free to leave a comment or just say hi!"
@@ -135,7 +135,7 @@ export default function Contact(props: Contact) {
                 />
                 <meta
                     property="og:title"
-                    content="Contact | AlexBrothers"
+                    content="Contact | Alex Brothers"
                 />
                 <meta
                     property="og:description"

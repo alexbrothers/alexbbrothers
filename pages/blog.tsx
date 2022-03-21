@@ -35,7 +35,7 @@ export default function Blog(props: BlogsPageProps) {
   return (
     <>
         <Head>
-            <title>Blogs | AlexBrothers</title>
+            <title>Blogs | Alex Brothers</title>
             <meta
                 name="description"
                 content="Blog posts from Alex Brothers about solutions to coding interview problems, step by step explainations of LeetCode problem solutions, and technical tutorials."
@@ -43,7 +43,7 @@ export default function Blog(props: BlogsPageProps) {
             />
             <meta
                 property="og:title"
-                content="Blogs | AlexBrothers"
+                content="Blogs | Alex Brothers"
             />
             <meta
                 property="og:description"

@@ -30,7 +30,7 @@ export default function About(props: AboutProps) {
   return (
     <>
       <Head>
-        <title>About | AlexBrothers</title>
+        <title>About | Alex Brothers</title>
         <meta
           name="description"
           content="Learn more about Alex Brothers and his background, his software engineering work experience, and technical credentials."
@@ -38,7 +38,7 @@ export default function About(props: AboutProps) {
         />
         <meta
           property="og:title"
-          content="About | AlexBrothers"
+          content="About | Alex Brothers"
         />
         <meta
           property="og:description"
