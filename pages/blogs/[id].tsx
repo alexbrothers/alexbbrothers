@@ -51,6 +51,10 @@ export default function BlogPost(props: BlogPostProps) {
                     property="og:image"
                     content={`${baseUrl}/avatar.png`}
                 />
+                <meta
+                    property="og:url"
+                    content={`${canonicalUrl}/blogs/${props.url}`}
+                />
                 <link
                     rel="canonical"
                     href={`${canonicalUrl}/blogs/${props.url}`}
