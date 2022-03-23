@@ -3,7 +3,12 @@ import { getContentfulClient } from "../lib/contentful";
 
 const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || "https://www.alexbrothers.dev";
 
-function generateSiteMap(blogIds: string[]) {
+interface SiteMapBlogInfo {
+    url: string,
+    lastModified: string,
+}
+
+function generateSiteMap(blogs: SiteMapBlogInfo[]) {
     return `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
@@ -18,11 +23,12 @@ function generateSiteMap(blogIds: string[]) {
         <url>
             <loc>${baseUrl}/contact</loc>
         </url>
-        ${blogIds
-            .map(id => {
+        ${blogs
+            .map(blog => {
                 return `
                     <url>
-                        <loc>${`${baseUrl}/blogs/${id}`}</loc>
+                        <loc>${`${baseUrl}/blogs/${blog.url}`}</loc>
+                        <lastmod>${new Date(blog.lastModified).toLocaleDateString()}</lastmod>
                     </url>
                 `
             })
@@ -37,19 +43,22 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const client = getContentfulClient();
-    let paths: string[];
+    let siteMapBlogInfo: SiteMapBlogInfo[];
     try {
         const blogResponse = await client.getEntries({
             content_type: "blogPost",
         });
         const blogs = blogResponse.items as any;
-        paths = blogs.map(blog => blog.fields.url);
+        siteMapBlogInfo = blogs.map(blog => ({
+            url: blog.fields.url,
+            lastModified: blog.sys.updatedAt
+        }));
     } catch(e: any) {
         console.log(`error retrieving blogs ids from contentful: ${e.message}`);
         throw e;
     }
 
-    const siteMap: string = generateSiteMap(paths);
+    const siteMap: string = generateSiteMap(siteMapBlogInfo);
     context.res.setHeader('Content-Type', 'text/xml');
     context.res.write(siteMap);
     context.res.end();
