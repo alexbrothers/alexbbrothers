@@ -160,12 +160,12 @@ export default function HideAppBar() {
                     }
                   }}>
                     {pages.map((page) => (
-                      <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">
-                          <Link href={page.link}>
-                            <a>{page.name}</a>
-                          </Link>
-                        </Typography>
+                      <MenuItem key={page.name} onClick={handleCloseNavMenu} sx={{
+                        textAlign: "center"
+                      }}>
+                        <Link href={page.link}>
+                          <a>{page.name}</a>
+                        </Link>
                       </MenuItem>
                     ))}
                   </Box>
