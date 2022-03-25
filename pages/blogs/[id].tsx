@@ -79,6 +79,9 @@ export default function BlogPost(props: BlogPostProps) {
                         avatarPhotoLink={props.author.avatarPhotoLink}
                         datePosted={props.createdAt}
                     />
+                    <Box component="hr" sx={{
+                        opacity: "0.8"
+                    }} />
                     <Box component="article" sx={{
                         "a": {
                             color: "#0070f3",
