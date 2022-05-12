@@ -52,6 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await sgMail.send(email);
   } catch (e) {
+    console.log("Unable to send email: ", e.message);
     const errorResponse: ErrorResponse = {
       error: "unable to send email",
     }
