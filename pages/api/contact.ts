@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 interface ContactRequest {
     name: string,
@@ -19,19 +19,10 @@ interface ErrorResponse {
   error: string,
 }
 
-const emailBotUsername = process.env.EMAIL_BOT_USERNAME;
-const emailBotPassword = process.env.EMAIL_BOT_PASSWORD;
-const emailBotService = process.env.EMAIL_BOT_SERVICE;
+const emailBotUserName = process.env.EMAIL_BOT_USERNAME;
 const emailBotDestinationEmail = process.env.EMAIL_BOT_DESTINATION_EMAIL;
-
-const mailTransporter = nodemailer.createTransport({
-  service: emailBotService,
-  auth: {
-    user: emailBotUsername,
-    pass: emailBotPassword
-  },
-  secure: true,
-})
+const sendgridApiKey = process.env.SENDGRID_API_KEY;
+sgMail.setApiKey(sendgridApiKey);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
@@ -52,14 +43,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     message: req.body.message,
   }
   const email: Email = {
-    from: `${contactRequest.name} <${emailBotUsername}>`,
+    from: emailBotUserName,
     to: emailBotDestinationEmail,
     replyTo: contactRequest.replyTo,
-    subject: `Contact form send from alexbrothers.dev by ${contactRequest.name}`,
+    subject: `Contact form sent from alexbrothers.dev by ${contactRequest.name}`,
     text: contactRequest.message,
   }
   try {
-    const mailResponse = await mailTransporter.sendMail(email);
+    await sgMail.send(email);
   } catch (e) {
     const errorResponse: ErrorResponse = {
       error: "unable to send email",
