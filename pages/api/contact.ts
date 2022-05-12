@@ -52,7 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await sgMail.send(email);
   } catch (e) {
-    console.log("Unable to send email: ", e.message);
+    console.log("Unable to send email using SendGrid: ", e.message);
     const errorResponse: ErrorResponse = {
       error: "unable to send email",
     }
